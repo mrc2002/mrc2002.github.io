@@ -1,0 +1,1917 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مستندات پروژه پایانی - وب اپلیکیشن تراک</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3b82f6;
+            --secondary-color: #1e40af;
+            --accent-color: #06b6d4;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --error-color: #ef4444;
+            --dark-bg: #0f172a;
+            --dark-surface: #1e293b;
+            --dark-text: #f1f5f9;
+            --light-bg: #f8fafc;
+            --light-surface: #ffffff;
+            --light-text: #1e293b;
+        }
+
+        * {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            scroll-behavior: smooth;
+            background: var(--light-bg);
+            color: var(--light-text);
+        }
+
+        body.dark {
+            background: var(--dark-bg);
+            color: var(--dark-text);
+        }
+
+        .dark-mode-toggle {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .dark-mode-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+        }
+
+        .print-button {
+            position: fixed;
+            top: 20px;
+            left: 80px;
+            z-index: 1000;
+            background: var(--success-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .print-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+        }
+
+        .content-section h2 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid var(--primary-color);
+            position: relative;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .content-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            border-radius: 2px;
+        }
+
+        .content-section h3 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-top: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary-color);
+        }
+
+        .content-section h4 {
+            font-size: 1.375rem;
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .sidebar-link {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sidebar-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+            transition: right 0.5s;
+        }
+
+        .sidebar-link:hover::before {
+            right: 100%;
+        }
+
+        .sidebar-link.active {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            font-weight: 600;
+            transform: translateX(-5px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+
+        .tech-stack-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .tech-item {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.2);
+            transform: translateY(0);
+        }
+
+        .tech-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s;
+        }
+
+        .tech-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(59, 130, 246, 0.3);
+        }
+
+        .tech-item:hover::before {
+            left: 100%;
+        }
+
+        .database-model {
+            background: var(--light-surface);
+            border: 1px solid #e2e8f0;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .dark .database-model {
+            background: var(--dark-surface);
+            border-color: #374151;
+        }
+
+        .model-name {
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        .field-list {
+            font-size: 0.95rem;
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        .screenshot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .screenshot-item {
+            text-align: center;
+            background: var(--light-surface);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            transform: translateY(0);
+        }
+
+        .dark .screenshot-item {
+            background: var(--dark-surface);
+        }
+
+        .screenshot-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        }
+
+        .screenshot-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .screenshot-item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .screenshot-item:hover img {
+            transform: scale(1.02);
+        }
+
+        .use-case-diagram {
+            background: var(--light-surface);
+            border: 2px solid #e2e8f0;
+            border-radius: 1rem;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dark .use-case-diagram {
+            background: var(--dark-surface);
+            border-color: #374151;
+        }
+
+        .actor {
+            background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+            border: 3px solid var(--primary-color);
+            border-radius: 50%;
+            width: 90px;
+            height: 90px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0.75rem;
+            font-weight: 600;
+            color: var(--secondary-color);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .actor::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        .actor:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+        }
+
+        .actor:hover::before {
+            width: 100%;
+            height: 100%;
+        }
+
+        .use-case {
+            background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+            border: 2px solid var(--success-color);
+            border-radius: 0.75rem;
+            padding: 0.75rem 1.25rem;
+            margin: 0.75rem;
+            display: inline-block;
+            font-weight: 500;
+            color: #166534;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .use-case::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .use-case:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(16, 185, 129, 0.2);
+        }
+
+        .use-case:hover::before {
+            left: 100%;
+        }
+
+        .system-box {
+            border: 3px solid var(--primary-color);
+            border-radius: 1.5rem;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            background: var(--light-surface);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dark .system-box {
+            background: var(--dark-surface);
+        }
+
+        .system-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color), var(--success-color));
+        }
+
+        .floating-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .dark .glass-effect {
+            background: rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Enhanced scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--light-bg);
+            border-radius: 10px;
+        }
+
+        .dark ::-webkit-scrollbar-track {
+            background: var(--dark-bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border-radius: 10px;
+            border: 2px solid var(--light-bg);
+        }
+
+        .dark ::-webkit-scrollbar-thumb {
+            border-color: var(--dark-bg);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+        }
+
+        /* Loading animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(59, 130, 246, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--primary-color);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
+                background: white !important;
+                color: black !important;
+            }
+            
+            .dark-mode-toggle,
+            .print-button,
+            aside {
+                display: none !important;
+            }
+            
+            main {
+                margin: 0 !important;
+                padding: 20px !important;
+                max-width: none !important;
+            }
+            
+            .content-section {
+                page-break-inside: avoid;
+                margin-bottom: 30px;
+            }
+            
+            .content-section h2 {
+                page-break-after: avoid;
+                color: #1e40af !important;
+                border-bottom: 2px solid #3b82f6;
+            }
+            
+            .screenshot-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            
+            .screenshot-item {
+                page-break-inside: avoid;
+                box-shadow: none !important;
+                border: 1px solid #e5e7eb;
+            }
+            
+            .screenshot-item img {
+                max-width: 100%;
+                height: auto;
+            }
+            
+            .tech-stack-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            
+            .tech-item {
+                page-break-inside: avoid;
+                background: #f3f4f6 !important;
+                color: #1f2937 !important;
+                border: 1px solid #d1d5db;
+            }
+            
+            .use-case-diagram {
+                page-break-inside: avoid;
+                border: 1px solid #d1d5db;
+            }
+            
+            .actor,
+            .use-case {
+                background: #f9fafb !important;
+                color: #1f2937 !important;
+                border: 1px solid #d1d5db;
+            }
+            
+            .database-model {
+                page-break-inside: avoid;
+                border: 1px solid #d1d5db;
+                background: #f9fafb !important;
+            }
+            
+            .model-name {
+                color: #1e40af !important;
+            }
+            
+            .field-list {
+                color: #374151 !important;
+            }
+        }
+
+        /* Responsive improvements */
+        @media (max-width: 768px) {
+            .content-section h2 {
+                font-size: 1.875rem;
+            }
+            
+            .tech-stack-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .screenshot-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .print-button {
+                left: 80px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+    <!-- Dark Mode Toggle -->
+    <button class="dark-mode-toggle" id="darkModeToggle" title="تغییر حالت تاریک/روشن">
+        <i class="fas fa-moon" id="darkModeIcon"></i>
+    </button>
+
+    <!-- Print Button -->
+    <button class="print-button" id="printButton" title="چاپ گزارش">
+        <i class="fas fa-print"></i>
+    </button>
+
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <aside class="w-72 bg-white dark:bg-slate-800 border-l border-slate-200 dark:border-slate-700 p-6 sticky top-0 h-screen overflow-y-auto glass-effect">
+            <div class="flex items-center mb-6">
+                <i class="fas fa-book-open text-2xl text-blue-600 mr-3"></i>
+                <h1 class="text-xl font-bold text-slate-900 dark:text-slate-100">فهرست مطالب</h1>
+            </div>
+            <nav>
+                <ul class="space-y-3" id="toc">
+                    <li><a href="#chapter-0" class="sidebar-link block px-4 py-3 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-all duration-300">
+                        <i class="fas fa-file-alt ml-2"></i>چکیده
+                    </a></li>
+                    <li><a href="#chapter-1" class="sidebar-link block px-4 py-3 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-all duration-300">
+                        <i class="fas fa-search ml-2"></i>فصل اول: شناخت سیستم
+                    </a></li>
+                    <li><a href="#chapter-2" class="sidebar-link block px-4 py-3 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-all duration-300">
+                        <i class="fas fa-check-circle ml-2"></i>فصل دوم: امکان‌سنجی
+                    </a></li>
+                    <li><a href="#chapter-3" class="sidebar-link block px-4 py-3 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-all duration-300">
+                        <i class="fas fa-sitemap ml-2"></i>فصل سوم: معماری
+                    </a></li>
+                    <li><a href="#chapter-4" class="sidebar-link block px-4 py-3 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-all duration-300">
+                        <i class="fas fa-cogs ml-2"></i>فصل چهارم: ویژگی‌ها
+                    </a></li>
+                    <li><a href="#chapter-5" class="sidebar-link block px-4 py-3 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-all duration-300">
+                        <i class="fas fa-chart-line ml-2"></i>فصل پنجم: تحلیل اقتصادی
+                    </a></li>
+                    <li><a href="#chapter-6" class="sidebar-link block px-4 py-3 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-all duration-300">
+                        <i class="fas fa-balance-scale ml-2"></i>فصل ششم: مسائل قانونی
+                    </a></li>
+                    <li><a href="#chapter-7" class="sidebar-link block px-4 py-3 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-all duration-300">
+                        <i class="fas fa-globe ml-2"></i>فصل هفتم: تأثیرات فرهنگی
+                    </a></li>
+                    <li><a href="#chapter-8" class="sidebar-link block px-4 py-3 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-all duration-300">
+                        <i class="fas fa-rocket ml-2"></i>فصل هشتم: نتیجه‌گیری
+                    </a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-8 md:p-12 overflow-y-auto">
+            <!-- University Logo Section -->
+            <div class="text-center mb-8 floating-animation">
+                <img src="uni.png" alt="موسسه آموزش عالی خاوران" class="mx-auto h-24 w-auto mb-4 rounded-lg shadow-lg" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="bg-gradient-to-r from-blue-100 to-cyan-100 dark:from-blue-900/30 dark:to-cyan-900/30 p-8 rounded-2xl shadow-lg" style="display:none;">
+                    <div class="flex items-center justify-center mb-4">
+                        <i class="fas fa-university text-6xl text-blue-600 dark:text-blue-400"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-blue-800 dark:text-blue-200">موسسه آموزش عالی خاوران</h2>
+                    <p class="text-blue-600 dark:text-blue-300 mt-2">دانشگاه معتبر و پیشرو در آموزش عالی</p>
+                </div>
+            </div>
+
+            <header class="text-center mb-12 pb-8 border-b-2 border-gradient">
+                <div class="relative">
+                    <h1 class="text-4xl md:text-6xl font-extrabold gradient-text mb-4">مستندات پروژه پایانی کارشناسی</h1>
+                    <p class="mt-4 text-2xl md:text-3xl font-semibold text-sky-600 dark:text-sky-400">وب اپلیکیشن جامع مدیریت حمل و نقل (تراک)</p>
+                    <div class="mt-8 text-lg text-slate-600 dark:text-slate-300 space-y-2">
+                        <div class="flex items-center justify-center space-x-4 space-x-reverse">
+                            <i class="fas fa-user-graduate text-blue-600"></i>
+                    <p><strong>دانشجو:</strong> محمد غلامپور</p>
+                        </div>
+                        <div class="flex items-center justify-center space-x-4 space-x-reverse">
+                            <i class="fas fa-chalkboard-teacher text-blue-600"></i>
+                            <p><strong>استاد راهنما:</strong> دکتر هوبخت عطاران</p>
+                        </div>
+                        <div class="flex items-center justify-center space-x-4 space-x-reverse">
+                            <i class="fas fa-university text-blue-600"></i>
+                    <p><strong>دانشگاه:</strong> موسسه آموزش عالی خاوران</p>
+                        </div>
+                        <div class="flex items-center justify-center space-x-4 space-x-reverse">
+                            <i class="fas fa-calendar text-blue-600"></i>
+                            <p><strong>سال تحصیلی:</strong> ۱۴۰۳-۱۴۰۴</p>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            
+            <article class="prose prose-lg max-w-none text-justify leading-relaxed">
+                <section id="chapter-0" class="content-section mb-12">
+                    <h2>چکیده</h2>
+                    
+                    <div class="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 p-8 rounded-xl mb-8">
+                        <h3 class="text-2xl font-bold text-blue-800 dark:text-blue-200 mb-6">خلاصه اجرایی پروژه</h3>
+                        <p class="text-lg leading-relaxed mb-6">
+                            پروژه "تراک" یک پلتفرم نرم‌افزاری جامع تحت وب برای مدیریت هوشمند فرآیندهای حمل و نقل بار است. این سیستم با هدف حل چالش‌هایی نظیر عدم بهینگی در تخصیص بار، پیچیدگی در مدیریت ناوگان و نبود شفافیت در هزینه‌ها، طراحی و پیاده‌سازی شده است.
+                        </p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-md">
+                                <h4 class="font-bold text-lg mb-3 text-green-600 dark:text-green-400"><i class="fas fa-target ml-2"></i>اهداف اصلی</h4>
+                                <ul class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                                    <li>• بهینه‌سازی تطبیق بار با کامیون‌های خالی</li>
+                                    <li>• کاهش مسافت‌های خالی طی شده (Deadhead miles)</li>
+                                    <li>• بهبود مدیریت ناوگان و رانندگان</li>
+                                    <li>• افزایش شفافیت در قیمت‌گذاری</li>
+                                    <li>• کاهش هزینه‌های عملیاتی</li>
+                                </ul>
+                            </div>
+                            <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-md">
+                                <h4 class="font-bold text-lg mb-3 text-blue-600 dark:text-blue-400"><i class="fas fa-cogs ml-2"></i>فناوری‌های کلیدی</h4>
+                                <ul class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                                    <li>• Django Framework برای Backend</li>
+                                    <li>• PostgreSQL + PostGIS برای پایگاه داده</li>
+                                    <li>• الگوریتم‌های بهینه‌سازی پیشرفته</li>
+                                    <li>• سیستم‌های جغرافیایی (GIS)</li>
+                                    <li>• API های RESTful</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 p-8 rounded-xl mb-8">
+                        <h3 class="text-2xl font-bold text-green-800 dark:text-green-200 mb-6">دستاوردهای کلیدی</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="text-center">
+                                <div class="bg-green-100 dark:bg-green-900/30 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
+                                    <i class="fas fa-chart-line text-2xl text-green-600"></i>
+                                </div>
+                                <h4 class="font-bold text-lg mb-2">بهینه‌سازی عملکرد</h4>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">کاهش ۱۵٪ مسافت خالی و بهبود ۴۰٪ بهره‌وری ناوگان</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="bg-blue-100 dark:bg-blue-900/30 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
+                                    <i class="fas fa-dollar-sign text-2xl text-blue-600"></i>
+                                </div>
+                                <h4 class="font-bold text-lg mb-2">صرفه‌جویی اقتصادی</h4>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">ROI 664% برای مشتریان و بازگشت سرمایه در ۴ روز</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="bg-purple-100 dark:bg-purple-900/30 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
+                                    <i class="fas fa-leaf text-2xl text-purple-600"></i>
+                                </div>
+                                <h4 class="font-bold text-lg mb-2">تأثیر زیست‌محیطی</h4>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">کاهش ۲۵٪ انتشار CO2 و ۳۰٪ صرفه‌جویی در سوخت</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 p-8 rounded-xl mb-8">
+                        <h3 class="text-2xl font-bold text-purple-800 dark:text-purple-200 mb-6">مخاطبان هدف</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="font-bold text-lg mb-3 text-purple-600">کاربران اصلی</h4>
+                                <ul class="space-y-2 text-sm">
+                                    <li>• <strong>شرکت‌های حمل و نقل:</strong> مدیریت ناوگان و بهینه‌سازی عملیات</li>
+                                    <li>• <strong>رانندگان:</strong> یافتن بار مناسب و مدیریت سفرها</li>
+                                    <li>• <strong>صاحبان بار:</strong> یافتن حمل‌کننده مناسب</li>
+                                    <li>• <strong>کارگزاران:</strong> تسهیل ارتباط بین عرضه و تقاضا</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-3 text-pink-600">مزایای رقابتی</h4>
+                                <ul class="space-y-2 text-sm">
+                                    <li>• الگوریتم‌های پیشرفته بهینه‌سازی</li>
+                                    <li>• یکپارچه‌سازی با سیستم‌های جغرافیایی</li>
+                                    <li>• رابط کاربری مدرن و کاربرپسند</li>
+                                    <li>• پشتیبانی از اپلیکیشن‌های موبایل</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-gradient-to-r from-orange-50 to-red-50 dark:from-orange-900/20 dark:to-red-900/20 p-8 rounded-xl mb-8">
+                        <h3 class="text-2xl font-bold text-orange-800 dark:text-orange-200 mb-6">ویژگی‌های منحصر به فرد</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-md">
+                                <h4 class="font-bold text-lg mb-3 text-orange-600 dark:text-orange-400"><i class="fas fa-brain ml-2"></i>الگوریتم‌های پیشرفته</h4>
+                                <ul class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                                    <li>• الگوریتم Knapsack برای بهینه‌سازی بار</li>
+                                    <li>• بسته‌بندی سه‌بعدی هوشمند</li>
+                                    <li>• مسیریابی چندمقصده</li>
+                                    <li>• محاسبه دقیق هزینه‌ها</li>
+                                </ul>
+                            </div>
+                            <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-md">
+                                <h4 class="font-bold text-lg mb-3 text-red-600 dark:text-red-400"><i class="fas fa-cogs ml-2"></i>قابلیت‌های سیستم</h4>
+                                <ul class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                                    <li>• ردیابی زنده وسایل نقلیه</li>
+                                    <li>• سیستم اطلاع‌رسانی چند کاناله</li>
+                                    <li>• مدیریت نقش‌ها و دسترسی‌ها</li>
+                                    <li>• گزارش‌گیری پیشرفته</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-gradient-to-r from-teal-50 to-cyan-50 dark:from-teal-900/20 dark:to-cyan-900/20 p-8 rounded-xl mb-8">
+                        <h3 class="text-2xl font-bold text-teal-800 dark:text-teal-200 mb-6">مزایای رقابتی</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="text-center">
+                                <div class="bg-teal-100 dark:bg-teal-900/30 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
+                                    <i class="fas fa-brain text-2xl text-teal-600"></i>
+                                </div>
+                                <h4 class="font-bold text-lg mb-2">هوش مصنوعی</h4>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">استفاده از الگوریتم‌های پیشرفته برای بهینه‌سازی</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="bg-cyan-100 dark:bg-cyan-900/30 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
+                                    <i class="fas fa-map-marked-alt text-2xl text-cyan-600"></i>
+                                </div>
+                                <h4 class="font-bold text-lg mb-2">GIS Integration</h4>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">یکپارچه‌سازی با سیستم‌های جغرافیایی</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="bg-blue-100 dark:bg-blue-900/30 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
+                                    <i class="fas fa-mobile-alt text-2xl text-blue-600"></i>
+                                </div>
+                                <h4 class="font-bold text-lg mb-2">Multi-Platform</h4>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">پشتیبانی از وب و اپلیکیشن‌های موبایل</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 p-8 rounded-xl mb-8">
+                        <h3 class="text-2xl font-bold text-indigo-800 dark:text-indigo-200 mb-6">تأثیرات اجتماعی و اقتصادی</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-md">
+                                <h4 class="font-bold text-lg mb-3 text-indigo-600 dark:text-indigo-400"><i class="fas fa-chart-line ml-2"></i>تأثیرات اقتصادی</h4>
+                                <ul class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                                    <li>• ایجاد فرصت‌های شغلی جدید در حوزه IT</li>
+                                    <li>• کاهش هزینه‌های عملیاتی شرکت‌ها</li>
+                                    <li>• افزایش رقابت در بازار حمل و نقل</li>
+                                    <li>• بهبود بهره‌وری کلی صنعت</li>
+                                </ul>
+                            </div>
+                            <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-md">
+                                <h4 class="font-bold text-lg mb-3 text-purple-600 dark:text-purple-400"><i class="fas fa-users ml-2"></i>تأثیرات اجتماعی</h4>
+                                <ul class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                                    <li>• کاهش ترافیک و آلودگی هوا</li>
+                                    <li>• بهبود کیفیت زندگی رانندگان</li>
+                                    <li>• شفافیت بیشتر در قیمت‌گذاری</li>
+                                    <li>• دسترسی بهتر به خدمات حمل و نقل</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="bg-gradient-to-r from-gray-50 to-slate-50 dark:from-gray-900/20 dark:to-slate-900/20 p-8 rounded-xl">
+                        <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-200 mb-6">نتیجه‌گیری</h3>
+                        <p class="text-lg leading-relaxed">
+                            سیستم "تراک" با ترکیب تکنولوژی‌های پیشرفته و الگوریتم‌های هوشمند، قابلیت تحول در صنعت حمل و نقل را دارد. این سیستم نه تنها مشکلات موجود در صنعت را حل می‌کند، بلکه فرصت‌های جدیدی برای رشد و توسعه ایجاد می‌کند. با توجه به تأثیرات مثبت اقتصادی، زیست‌محیطی و اجتماعی، "تراک" می‌تواند به عنوان یک ابزار کلیدی در تحول دیجیتال صنعت حمل و نقل کشور عمل کند.
+                        </p>
+                    </div>
+                </section>
+
+                <section id="chapter-1" class="content-section mb-12">
+                    <h2>فصل اول: شناخت سیستم</h2>
+                    <h4>۱-۱- مقدمه و شرح مسئله</h4>
+                    <p>صنعت حمل و نقل جاده‌ای به عنوان یکی از ارکان اصلی اقتصاد، با چالش‌های متعددی روبروست. عدم بهینگی در تطبیق بار با کامیون‌های خالی (افزایش سفرهای بدون بار)، پیچیدگی در برنامه‌ریزی مسیرهای چندمقصده، و عدم شفافیت در مدیریت هزینه‌ها از جمله این مشکلات هستند. شرکت‌های حمل و نقل (Carriers)، رانندگان، و صاحبان بار (Shippers) اغلب برای یافتن بهترین گزینه‌ها و به حداکثر رساندن سودآوری با مشکل مواجه هستند. فرآیندهای سنتی و دستی منجر به اتلاف وقت، افزایش مسافت‌های خالی طی شده توسط کامیون‌ها (Deadhead miles)، و کاهش بهره‌وری کلی می‌شود. این ناکارآمدی‌ها نه تنها هزینه‌های عملیاتی را افزایش می‌دهد بلکه بر محیط زیست نیز تأثیر منفی دارد.</p>
+                    <h4>۱-۲- راه حل پیشنهادی: معرفی سیستم تراک</h4>
+                    <p>پروژه "تراک" یک پلتفرم جامع مدیریت لجستیک است که برای بهینه‌سازی حمل و نقل بار از طریق تطبیق هوشمند بار، برنامه‌ریزی مسیر، و مدیریت هزینه‌ها طراحی شده است. این سیستم به عنوان یک وب اپلیکیشن توسعه داده شده و به تمامی فعالان این حوزه از جمله شرکت‌های حمل و نقل، رانندگان، کارگزاران (Brokers) و صاحبان بار خدمات ارائه می‌دهد. این پلتفرم با استفاده از الگوریتم‌های پیشرفته و تحلیل داده‌ها، فرآیندها را خودکار کرده و به کاربران کمک می‌کند تا تصمیمات هوشمندانه‌تری بگیرند.</p>
+                    <h4>۱-۳- اهداف پروژه</h4>
+                    <ul class="list-disc pr-8 space-y-2">
+                        <li>**بهینه‌سازی تطبیق بار:** ایجاد یک الگوریتم هوشمند برای پیدا کردن بهترین بار برای هر سفر با در نظر گرفتن ظرفیت، مسیر و سودآوری.</li>
+                        <li>**مدیریت متمرکز ناوگان:** فراهم آوردن ابزاری برای مدیریت کامیون‌ها، تریلرها و رانندگان.</li>
+                        <li>**محاسبه دقیق هزینه‌ها:** پیاده‌سازی یک سیستم جامع برای ردیابی و محاسبه تمام هزینه‌های ثابت و متغیر مرتبط با هر وسیله نقلیه و هر سفر.</li>
+                        <li>**افزایش شفافیت و ارتباطات:** ایجاد یک سیستم اطلاع‌رسانی چند کاناله (ایمیل، پیامک) برای آگاهی‌رسانی به کاربران در مورد وضعیت سفرها و بارها.</li>
+                        <li>**استفاده از داده‌های جغرافیایی:** بهره‌گیری از قابلیت‌های مکانی برای بهینه‌سازی مسیر و محاسبات دقیق مسافت.</li>
+                    </ul>
+                </section>
+
+                <section id="chapter-2" class="content-section mb-12">
+                    <h2>فصل دوم: امکان‌سنجی سیستم</h2>
+                    <h4>۲-۱- امکان‌سنجی منطقی</h4>
+                    <p>با توجه به نیاز روزافزون صنعت حمل و نقل به راهکارهای دیجیتال و هوشمند، سیستم پیشنهادی کاملاً منطقی و مفید به نظر می‌رسد. این سیستم با خودکارسازی فرآیندهای کلیدی، می‌تواند به طور قابل توجهی به رفع چالش‌های موجود کمک کرده و بهره‌وری را در این صنعت افزایش دهد.</p>
+                    <h4>۲-۲- امکان‌سنجی فنی و فیزیکی</h4>
+                    <ul class="list-disc pr-8 space-y-2">
+                        <li>**تجهیزات مورد نیاز:** این سیستم یک وب اپلیکیشن است و کاربران نهایی تنها به یک دستگاه متصل به اینترنت (کامپیوتر، لپ‌تاپ یا گوشی هوشمند) و یک مرورگر وب نیاز دارند.</li>
+                        <li>**پشته فناوری (Tech Stack):** پروژه با استفاده از تکنولوژی‌های مدرن و اثبات‌شده‌ای مانند Django, PostgreSQL و PostGIS توسعه داده شده که از نظر فنی کاملاً قابل اجرا و مقیاس‌پذیر است.</li>
+                        <li>**تیم توسعه:** تیم توسعه پروژه متشکل از یک توسعه‌دهنده فرانت‌اند، یک توسعه‌دهنده بک‌اند و یک متخصص DevOps (برای فرآیندهای CI/CD) بود که همگی تسلط کامل بر تکنولوژی‌های مورد استفاده داشتند. زیرساخت‌های لازم برای استقرار (Deployment) و نگهداری پروژه نیز از ابتدای کار در نظر گرفته شده بود.</li>
+                    </ul>
+                    <h4>۲-۳- امکان‌سنجی اقتصادی</h4>
+                    <p>پیاده‌سازی این سیستم در کوتاه‌مدت نیازمند سرمایه‌گذاری برای توسعه و نگهداری است. اما در بلندمدت، با کاهش مسافت‌های خالی، بهینه‌سازی مصرف سوخت، و افزایش تعداد بارهای جابجا شده، به طور قابل توجهی هزینه‌های عملیاتی شرکت‌های حمل و نقل را کاهش داده و سودآوری آن‌ها را افزایش می‌دهد که بازگشت سرمایه (ROI) مناسبی را تضمین می‌کند.</p>
+                    <h4>۲-۴- امکان‌سنجی قانونی</h4>
+                    <p>این سیستم در چارچوب قوانین موجود در صنعت حمل و نقل فعالیت می‌کند و با هیچ‌یک از مقررات جاری مغایرتی ندارد. تمامی مسائل مربوط به حریم خصوصی کاربران و امنیت داده‌ها مطابق با استانداردهای روز پیاده‌سازی شده است.</p>
+                </section>
+
+                <section id="chapter-3" class="content-section mb-12">
+                    <h2>فصل سوم: معماری و ساختار سیستم</h2>
+                     <h4>۳-۱- معماری کلی و پشته فناوری (Technology Stack)</h4>
+                    
+                    <div class="tech-stack-grid">
+                        <div class="tech-item">
+                            <h5 class="font-bold text-lg mb-2">Backend Framework</h5>
+                            <p>Django 4.0.3 + Django REST Framework</p>
+                        </div>
+                        <div class="tech-item">
+                            <h5 class="font-bold text-lg mb-2">Database</h5>
+                            <p>PostgreSQL + PostGIS</p>
+                        </div>
+                        <div class="tech-item">
+                            <h5 class="font-bold text-lg mb-2">Authentication</h5>
+                            <p>JWT (SimpleJWT)</p>
+                        </div>
+                        <div class="tech-item">
+                            <h5 class="font-bold text-lg mb-2">Geographic Services</h5>
+                            <p>PostGIS + Google Maps API</p>
+                        </div>
+                        <div class="tech-item">
+                            <h5 class="font-bold text-lg mb-2">Background Tasks</h5>
+                            <p>Celery + RabbitMQ</p>
+                        </div>
+                        <div class="tech-item">
+                            <h5 class="font-bold text-lg mb-2">Communication</h5>
+                            <p>Email (SMTP) + SMS (Twilio) + Push (Firebase)</p>
+                        </div>
+                        <div class="tech-item">
+                            <h5 class="font-bold text-lg mb-2">Payment</h5>
+                            <p>Stripe Integration</p>
+                        </div>
+                        <div class="tech-item">
+                            <h5 class="font-bold text-lg mb-2">API Documentation</h5>
+                            <p>Swagger/OpenAPI (drf-yasg)</p>
+                        </div>
+                    </div>
+
+                    <h4>۳-۲- معماری ماژولار (برنامه‌های Django)</h4>
+                     <p>سیستم به صورت ماژولار و در قالب چندین برنامه Django مستقل سازماندهی شده است:</p>
+                     <ol class="list-decimal pr-8 space-y-2">
+                        <li>**authsystem:** مسئولیت مدیریت کامل کاربران، احراز هویت، نقش‌ها و سطوح دسترسی را بر عهده دارد.</li>
+                        <li>**main_app:** هسته اصلی منطق تجاری سیستم شامل مدیریت کامیون‌ها، بارها، سفرها و شرکت‌های حمل و نقل.</li>
+                        <li>**search_algorithm:** شامل الگوریتم‌های هوشمند تطبیق بار و بهینه‌سازی بسته‌بندی سه‌بعدی.</li>
+                        <li>**communication:** مدیریت سیستم اطلاع‌رسانی چند کاناله.</li>
+                        <li>**utils:** شامل ابزارها و میان‌افزارهای مشترک.</li>
+                    </ol>
+
+                    <h4>۳-۳- ساختار کامل پایگاه داده</h4>
+                    <p>پایگاه داده سیستم شامل مدل‌های اصلی زیر است:</p>
+
+                    <h5>مدل‌های مدیریت کاربران (AuthSystem):</h5>
+                    <div class="database-model">
+                        <div class="model-name">User (مدل کاربر)</div>
+                        <div class="field-list">
+                            • id (UUID) • username • firstname • lastname • cellphone • email • type • status • plan • location • avatar • current_id • current_type • referral_code
+                        </div>
+                    </div>
+
+                    <div class="database-model">
+                        <div class="model-name">Group (گروه کاربری)</div>
+                        <div class="field-list">
+                            • id • title • carrier • broker • default_entity • description • permissions
+                        </div>
+                    </div>
+
+                    <div class="database-model">
+                        <div class="model-name">Menu (منوی سیستم)</div>
+                        <div class="field-list">
+                            • id • title • route • icon • parent_menu • is_menu • orders • permission_code_name
+                        </div>
+                    </div>
+
+                    <div class="database-model">
+                        <div class="model-name">Setting (تنظیمات سیستم)</div>
+                        <div class="field-list">
+                            • id • plan_first_driver • plan_basic_driver • plan_first_operator • plan_basic_operator • plan_first_carrier • plan_basic_carrier
+                        </div>
+                    </div>
+
+                    <h5>مدل‌های جغرافیایی:</h5>
+                    <div class="database-model">
+                        <div class="model-name">Country (کشور)</div>
+                        <div class="field-list">
+                            • id • name • country_code
+                        </div>
+                    </div>
+
+                    <div class="database-model">
+                        <div class="model-name">State (استان)</div>
+                        <div class="field-list">
+                            • id • name • country
+                        </div>
+                    </div>
+
+                    <div class="database-model">
+                        <div class="model-name">City (شهر)</div>
+                        <div class="field-list">
+                            • id • name • state • lat • lng • point (PostGIS Point)
+                        </div>
+                    </div>
+
+                    <div class="database-model">
+                        <div class="model-name">ZipCode (کد پستی)</div>
+                        <div class="field-list">
+                            • id • code • city • lat • lng • point (PostGIS Point) • formatted_address
+                        </div>
+                    </div>
+
+                    <div class="database-model">
+                        <div class="model-name">Location (مکان)</div>
+                        <div class="field-list">
+                            • id • country • state • city • zipcode • address • title
+                        </div>
+                    </div>
+
+                    <h5>مدل‌های اصلی کسب‌وکار (Main App):</h5>
+                    <div class="database-model">
+                        <div class="model-name">Carrier (شرکت حمل و نقل)</div>
+                        <div class="field-list">
+                            • id • manager (User) • title • mc_number • location • is_active • fuel_price_per_gallon • is_check_lock_trucks
+                        </div>
+                    </div>
+
+                    <div class="database-model">
+                        <div class="model-name">Broker (کارگزار)</div>
+                        <div class="field-list">
+                            • id • manager (User) • title • location • is_active
+                        </div>
+                    </div>
+
+                    <div class="database-model">
+                        <div class="model-name">Driver (راننده)</div>
+                        <div class="field-list">
+                            • id • user (User) • carrier • license_number • default_truck • is_For_Operator • user_created
+                        </div>
+                    </div>
+
+                    <div class="database-model">
+                        <div class="model-name">Operator (اپراتور/دیسپچر)</div>
+                        <div class="field-list">
+                            • id • user (User) • carrier • user_created
+                        </div>
+                    </div>
+
+                    <div class="database-model">
+                        <div class="model-name">Truck (کامیون)</div>
+                        <div class="field-list">
+                            • id • model_make • carrier • license_plate_number • maximum_capacity • width • height • length • type • type_size • default_driver • default_trailer • cost_truck_per_mile • cost_truck_percentage
+                        </div>
+                    </div>
+
+                    <div class="database-model">
+                        <div class="model-name">Trailer (تریلر)</div>
+                        <div class="field-list">
+                            • id • vin • trailer_number • carrier • type • type_size • maximum_capacity • width • height • length
+                        </div>
+                    </div>
+
+                    <div class="database-model">
+                        <div class="model-name">Load (بار)</div>
+                        <div class="field-list">
+                            • id • carrier • user_created • pickup_owner_name • pickup_owner_phone • pickup_owner_email • pickup_location • dropoff_location • equipment • trailer_type • price • status • total_weight • total_volume • total_linear • distance_between_origin_and_destination
+                        </div>
+                    </div>
+
+                    <div class="database-model">
+                        <div class="model-name">LoadItem (آیتم بار)</div>
+                        <div class="field-list">
+                            • id • load • description • commodity • item_types • number_of_item • length • width • height • weight • is_linear • is_stackable • is_hazardous • un_code
+                        </div>
+                    </div>
+
+                    <div class="database-model">
+                        <div class="model-name">Trip (سفر)</div>
+                        <div class="field-list">
+                            • id • title • carrier • truck • trailer • driver • origin_location • date • target_price • status • start_trip_date • end_trip_date • total_revenue • total_volume • total_weight • total_linear • raduis • truck_maximum_capacity • truck_width • truck_height • truck_length
+                        </div>
+                    </div>
+
+                    <div class="database-model">
+                        <div class="model-name">TripDestination (مقصد سفر)</div>
+                        <div class="field-list">
+                            • id • trip • location
+                        </div>
+                    </div>
+
+                    <div class="database-model">
+                        <div class="model-name">TripLoad (بار در سفر)</div>
+                        <div class="field-list">
+                            • id • trip • load • pickup_step • dropoff_step • is_pickup • is_dropoff • priority • is_current • profit_in_trip_per_mile • cost_truck_percentage
+                        </div>
+                    </div>
+
+                    <div class="database-model">
+                        <div class="model-name">TripRoute (مسیر سفر)</div>
+                        <div class="field-list">
+                            • id • trip • city • order
+                        </div>
+                    </div>
+
+                    <h5>مدل‌های مدیریت هزینه:</h5>
+                    <div class="database-model">
+                        <div class="model-name">TruckCost (هزینه کامیون)</div>
+                        <div class="field-list">
+                            • id • truck • title • price • type (fixed/variable/percentage) • unit (month/mile/trip)
+                        </div>
+                    </div>
+
+                    <div class="database-model">
+                        <div class="model-name">TruckCostCalculator (محاسبه‌گر هزینه)</div>
+                        <div class="field-list">
+                            • id • user • carrier • title • money_target_weekly • mile_target_weekly • cost_per_mile • truck_payment_weekly • trailer_payment_weekly • insurance_cost_weekly
+                        </div>
+                    </div>
+
+                    <h5>مدل‌های مدیریت اشتراک و پرداخت:</h5>
+                    <div class="database-model">
+                        <div class="model-name">Plan (طرح اشتراک)</div>
+                        <div class="field-list">
+                            • id • title • description • icon • image • price • unit_price • discount_price • order • days • expire_discount • user_type • is_trial
+                        </div>
+                    </div>
+
+                    <div class="database-model">
+                        <div class="model-name">Transaction (تراکنش)</div>
+                        <div class="field-list">
+                            • id • user • amount • status • payment_method • transaction_id
+                        </div>
+                    </div>
+
+                    <div class="database-model">
+                        <div class="model-name">PaymentRequest (درخواست پرداخت)</div>
+                        <div class="field-list">
+                            • id • user • plan • amount • status • stripe_payment_intent_id
+                        </div>
+                    </div>
+
+                    <h5>مدل‌های ارتباطات (Communication):</h5>
+                    <div class="database-model">
+                        <div class="model-name">EmailNotification (اطلاع‌رسانی ایمیل)</div>
+                        <div class="field-list">
+                            • id • recipient_emails • subject • content • status • status_msg • sendDate
+                        </div>
+                    </div>
+
+                    <div class="database-model">
+                        <div class="model-name">SmsNotification (اطلاع‌رسانی پیامک)</div>
+                        <div class="field-list">
+                            • id • recipient_phone • message • type • status • status_msg • sendDate
+                        </div>
+                    </div>
+
+                    <div class="database-model">
+                        <div class="model-name">MobileNotification (اطلاع‌رسانی موبایل)</div>
+                        <div class="field-list">
+                            • id • recipient • recipient_fcmtoken • title • message_text • image_url • json_data • status • status_msg • sendDate
+                        </div>
+                    </div>
+
+                    <h5>مدل‌های مدیریت کاربران و دسترسی:</h5>
+                    <div class="database-model">
+                        <div class="model-name">LoadUserSelected (بارهای انتخاب شده کاربر)</div>
+                        <div class="field-list">
+                            • id • user • load • selected_date • notes
+                        </div>
+                    </div>
+
+                    <div class="database-model">
+                        <div class="model-name">LoadUserIgnored (بارهای نادیده گرفته شده)</div>
+                        <div class="field-list">
+                            • id • user • load • ignored_date • reason
+                        </div>
+                    </div>
+
+                    <div class="database-model">
+                        <div class="model-name">LoadUserSave (بارهای ذخیره شده)</div>
+                        <div class="field-list">
+                            • id • user • load • saved_date • notes
+                        </div>
+                    </div>
+
+                    <div class="database-model">
+                        <div class="model-name">ReferralCode (کد معرفی)</div>
+                        <div class="field-list">
+                            • id • code • user • is_active • created_date • expiry_date
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="chapter-4" class="content-section mb-12">
+                    <h2>فصل چهارم: ویژگی‌های اصلی و منطق تجاری سیستم</h2>
+                    
+                    <h4>۴-۱- تصاویر وب اپلیکیشن و داشبورد</h4>
+                    
+                    <div class="screenshot-grid">
+                        <div class="screenshot-item">
+                            <img src="login.png" alt="صفحه ورود" class="w-full h-48 object-cover rounded-lg" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <div class="bg-gradient-to-br from-blue-500 to-blue-600 text-white p-8 rounded-lg h-48 flex flex-col items-center justify-center" style="display:none;">
+                                <i class="fas fa-sign-in-alt text-4xl mb-3"></i>
+                                <h5 class="font-bold text-lg">صفحه ورود</h5>
+                                <p class="text-sm opacity-90">احراز هویت امن کاربران</p>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">صفحه ورود کاربران</p>
+                        </div>
+                        <div class="screenshot-item">
+                            <img src="verify.png" alt="تأیید کد" class="w-full h-48 object-cover rounded-lg" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <div class="bg-gradient-to-br from-green-500 to-green-600 text-white p-8 rounded-lg h-48 flex flex-col items-center justify-center" style="display:none;">
+                                <i class="fas fa-shield-alt text-4xl mb-3"></i>
+                                <h5 class="font-bold text-lg">تأیید کد</h5>
+                                <p class="text-sm opacity-90">احراز هویت دو مرحله‌ای</p>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">صفحه تأیید کد</p>
+                        </div>
+                        <div class="screenshot-item">
+                            <img src="Trucks.png" alt="مدیریت کامیون‌ها" class="w-full h-48 object-cover rounded-lg" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <div class="bg-gradient-to-br from-purple-500 to-purple-600 text-white p-8 rounded-lg h-48 flex flex-col items-center justify-center" style="display:none;">
+                                <i class="fas fa-truck text-4xl mb-3"></i>
+                                <h5 class="font-bold text-lg">مدیریت کامیون‌ها</h5>
+                                <p class="text-sm opacity-90">مدیریت کامل ناوگان</p>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">مدیریت کامیون‌ها</p>
+                        </div>
+                        <div class="screenshot-item">
+                            <img src="Trips.png" alt="مدیریت سفرها" class="w-full h-48 object-cover rounded-lg" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <div class="bg-gradient-to-br from-orange-500 to-orange-600 text-white p-8 rounded-lg h-48 flex flex-col items-center justify-center" style="display:none;">
+                                <i class="fas fa-route text-4xl mb-3"></i>
+                                <h5 class="font-bold text-lg">مدیریت سفرها</h5>
+                                <p class="text-sm opacity-90">برنامه‌ریزی و ردیابی سفرها</p>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">مدیریت سفرها</p>
+                        </div>
+                        <div class="screenshot-item">
+                            <img src="Subscription Plan.png" alt="طرح اشتراک" class="w-full h-48 object-cover rounded-lg" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <div class="bg-gradient-to-br from-pink-500 to-pink-600 text-white p-8 rounded-lg h-48 flex flex-col items-center justify-center" style="display:none;">
+                                <i class="fas fa-crown text-4xl mb-3"></i>
+                                <h5 class="font-bold text-lg">طرح‌های اشتراک</h5>
+                                <p class="text-sm opacity-90">انواع پلن‌های قیمت‌گذاری</p>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">طرح‌های اشتراک</p>
+                        </div>
+                        <div class="screenshot-item">
+                            <img src="Reports.png" alt="گزارش‌ها" class="w-full h-48 object-cover rounded-lg" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <div class="bg-gradient-to-br from-indigo-500 to-indigo-600 text-white p-8 rounded-lg h-48 flex flex-col items-center justify-center" style="display:none;">
+                                <i class="fas fa-chart-line text-4xl mb-3"></i>
+                                <h5 class="font-bold text-lg">گزارش‌های مالی</h5>
+                                <p class="text-sm opacity-90">تحلیل و گزارش‌گیری پیشرفته</p>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">گزارش‌های مالی</p>
+                        </div>
+                        <div class="screenshot-item">
+                            <img src="Referral.png" alt="سیستم معرفی" class="w-full h-48 object-cover rounded-lg" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <div class="bg-gradient-to-br from-teal-500 to-teal-600 text-white p-8 rounded-lg h-48 flex flex-col items-center justify-center" style="display:none;">
+                                <i class="fas fa-users text-4xl mb-3"></i>
+                                <h5 class="font-bold text-lg">سیستم معرفی</h5>
+                                <p class="text-sm opacity-90">برنامه معرفی کاربران</p>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">سیستم معرفی کاربران</p>
+                        </div>
+                        <div class="screenshot-item">
+                            <img src="Real-time Tracking.png" alt="ردیابی زنده" class="w-full h-48 object-cover rounded-lg" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <div class="bg-gradient-to-br from-red-500 to-red-600 text-white p-8 rounded-lg h-48 flex flex-col items-center justify-center" style="display:none;">
+                                <i class="fas fa-satellite text-4xl mb-3"></i>
+                                <h5 class="font-bold text-lg">ردیابی زنده</h5>
+                                <p class="text-sm opacity-90">ردیابی لحظه‌ای سفرها</p>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">ردیابی زنده سفرها</p>
+                        </div>
+                        <div class="screenshot-item">
+                            <img src="Profile .png" alt="پروفایل کاربر" class="w-full h-48 object-cover rounded-lg" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <div class="bg-gradient-to-br from-yellow-500 to-yellow-600 text-white p-8 rounded-lg h-48 flex flex-col items-center justify-center" style="display:none;">
+                                <i class="fas fa-user-circle text-4xl mb-3"></i>
+                                <h5 class="font-bold text-lg">پروفایل کاربر</h5>
+                                <p class="text-sm opacity-90">مدیریت اطلاعات شخصی</p>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">پروفایل کاربر</p>
+                        </div>
+                        <div class="screenshot-item">
+                            <img src="LoadBoard.png" alt="تخته بار" class="w-full h-48 object-cover rounded-lg" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <div class="bg-gradient-to-br from-cyan-500 to-cyan-600 text-white p-8 rounded-lg h-48 flex flex-col items-center justify-center" style="display:none;">
+                                <i class="fas fa-clipboard-list text-4xl mb-3"></i>
+                                <h5 class="font-bold text-lg">تخته بار</h5>
+                                <p class="text-sm opacity-90">لیست بارهای موجود</p>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">تخته بار (Load Board)</p>
+                        </div>
+                        <div class="screenshot-item">
+                            <img src="Load Management.png" alt="مدیریت بار" class="w-full h-48 object-cover rounded-lg" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <div class="bg-gradient-to-br from-emerald-500 to-emerald-600 text-white p-8 rounded-lg h-48 flex flex-col items-center justify-center" style="display:none;">
+                                <i class="fas fa-boxes text-4xl mb-3"></i>
+                                <h5 class="font-bold text-lg">مدیریت بار</h5>
+                                <p class="text-sm opacity-90">مدیریت کامل بارها</p>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">مدیریت بارها</p>
+                        </div>
+                        <div class="screenshot-item">
+                            <img src="home.png" alt="صفحه اصلی" class="w-full h-48 object-cover rounded-lg" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <div class="bg-gradient-to-br from-violet-500 to-violet-600 text-white p-8 rounded-lg h-48 flex flex-col items-center justify-center" style="display:none;">
+                                <i class="fas fa-home text-4xl mb-3"></i>
+                                <h5 class="font-bold text-lg">صفحه اصلی</h5>
+                                <p class="text-sm opacity-90">داشبورد اصلی اپلیکیشن</p>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">صفحه اصلی اپلیکیشن</p>
+                        </div>
+                        <div class="screenshot-item">
+                            <img src="Dashborad.png" alt="داشبورد" class="w-full h-48 object-cover rounded-lg" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <div class="bg-gradient-to-br from-slate-500 to-slate-600 text-white p-8 rounded-lg h-48 flex flex-col items-center justify-center" style="display:none;">
+                                <i class="fas fa-tachometer-alt text-4xl mb-3"></i>
+                                <h5 class="font-bold text-lg">داشبورد</h5>
+                                <p class="text-sm opacity-90">داشبورد مدیریت</p>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">داشبورد مدیریت</p>
+                        </div>
+                        <div class="screenshot-item">
+                            <img src="Dashborad Carrier.png" alt="داشبورد شرکت" class="w-full h-48 object-cover rounded-lg" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <div class="bg-gradient-to-br from-amber-500 to-amber-600 text-white p-8 rounded-lg h-48 flex flex-col items-center justify-center" style="display:none;">
+                                <i class="fas fa-building text-4xl mb-3"></i>
+                                <h5 class="font-bold text-lg">داشبورد شرکت</h5>
+                                <p class="text-sm opacity-90">داشبورد شرکت حمل و نقل</p>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">داشبورد شرکت حمل و نقل</p>
+                        </div>
+                        <div class="screenshot-item">
+                            <img src="Account.png" alt="حساب کاربری" class="w-full h-48 object-cover rounded-lg" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <div class="bg-gradient-to-br from-rose-500 to-rose-600 text-white p-8 rounded-lg h-48 flex flex-col items-center justify-center" style="display:none;">
+                                <i class="fas fa-user-cog text-4xl mb-3"></i>
+                                <h5 class="font-bold text-lg">حساب کاربری</h5>
+                                <p class="text-sm opacity-90">حساب کاربری</p>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">حساب کاربری</p>
+                        </div>
+                    </div>
+
+                    <h4>۴-۲- نمودار موارد کاربری (Use Case Diagram)</h4>
+                    <div class="use-case-diagram">
+                        <div class="system-box">
+                            <h3 class="text-xl font-bold mb-4 text-indigo-700">سیستم مدیریت حمل و نقل تراک</h3>
+                            
+                            <div class="mb-6">
+                                <h4 class="font-semibold mb-3 text-gray-700">عامل‌ها (Actors):</h4>
+                                <div class="flex flex-wrap justify-center gap-4">
+                                    <div class="actor">Carrier<br>شرکت حمل و نقل</div>
+                                    <div class="actor">Driver<br>راننده</div>
+                                    <div class="actor">Operator<br>اپراتور</div>
+                                    <div class="actor">Broker<br>کارگزار</div>
+                                    <div class="actor">Shipper<br>صاحب بار</div>
+                                    <div class="actor">Admin<br>مدیر سیستم</div>
+                                </div>
+                            </div>
+
+                            <div class="mb-6">
+                                <h4 class="font-semibold mb-3 text-gray-700">موارد کاربری اصلی (Use Cases):</h4>
+                                <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+                                    <div class="use-case">مدیریت کاربران</div>
+                                    <div class="use-case">مدیریت کامیون‌ها</div>
+                                    <div class="use-case">مدیریت بارها</div>
+                                    <div class="use-case">برنامه‌ریزی سفر</div>
+                                    <div class="use-case">بهینه‌سازی بار</div>
+                                    <div class="use-case">محاسبه هزینه</div>
+                                    <div class="use-case">ردیابی سفر</div>
+                                    <div class="use-case">گزارش‌گیری</div>
+                                    <div class="use-case">مدیریت پرداخت</div>
+                                    <div class="use-case">ارسال اطلاعیه</div>
+                                    <div class="use-case">مدیریت نقش‌ها</div>
+                                    <div class="use-case">تحلیل عملکرد</div>
+                                </div>
+                            </div>
+
+                            <div class="text-sm text-gray-600 mt-4">
+                                <p><strong>رابطه‌ها:</strong></p>
+                                <ul class="list-disc text-right pr-6 mt-2">
+                                    <li>Carrier می‌تواند کاربران، کامیون‌ها، بارها و سفرها را مدیریت کند</li>
+                                    <li>Driver می‌تواند سفرها را ردیابی و گزارش دهد</li>
+                                    <li>Operator می‌تواند بارها را بهینه‌سازی و سفرها را برنامه‌ریزی کند</li>
+                                    <li>Broker می‌تواند بارها را ثبت و مدیریت کند</li>
+                                    <li>Shipper می‌تواند بارهای خود را ثبت و ردیابی کند</li>
+                                    <li>Admin به تمام قابلیت‌های سیستم دسترسی دارد</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h4>۴-۳- الگوریتم هوشمند جستجو و تطبیق بار</h4>
+                    <p>قلب سیستم "تراک"، الگوریتم هوشمند آن است که در چند مرحله عمل می‌کند:</p>
+                    <ol class="list-decimal pr-8 space-y-2">
+                        <li>**فاز فیلترینگ:** ابتدا سیستم تمام بارهای نامناسب را بر اساس معیارهایی مانند فاصله جغرافیایی، نوع تریلر مورد نیاز و پنجره زمانی حذف می‌کند.</li>
+                        <li>**فاز بهینه‌سازی:** سپس با استفاده از الگوریتم‌های پیشرفته، بهترین ترکیب از بارهای باقی‌مانده را انتخاب می‌کند:
+                            <ul class="list-disc pr-8 mt-2">
+                                <li>**الگوریتم Knapsack:** این الگوریتم برای حل مسئله "کوله پشتی" استفاده می‌شود تا با انتخاب مجموعه‌ای از بارها، سود کل را با توجه به محدودیت ظرفیت کامیون به حداکثر برساند.</li>
+                                <li>**الگوریتم بسته‌بندی سه‌بعدی (3D Packing):** این الگوریتم چیدمان بهینه بارها در فضای سه‌بعدی تریلر را محاسبه می‌کند تا از حداکثر فضا استفاده شود.</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </section>
+
+                <section id="chapter-5" class="content-section mb-12">
+                    <h2>فصل پنجم: تحلیل اقتصادی و بازگشت سرمایه</h2>
+                    
+                    <h4>۵-۱- تحلیل هزینه‌ها و درآمدها</h4>
+                    <div class="bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 p-6 rounded-xl mb-6">
+                        <h5 class="text-lg font-semibold mb-4 text-blue-800 dark:text-blue-200">هزینه‌های توسعه و پیاده‌سازی</h5>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="space-y-2">
+                                <p><strong>توسعه نرم‌افزار:</strong> ۱۵۰ ساعت × $40 = $6,000</p>
+                                <p><strong>طراحی UI/UX:</strong> ۴۰ ساعت × $50 = $2,000</p>
+                                <p><strong>تست و QA:</strong> ۳۰ ساعت × $30 = $900</p>
+                                <p><strong>مستندسازی:</strong> ۲۰ ساعت × $25 = $500</p>
+                            </div>
+                            <div class="space-y-2">
+                                <p><strong>سرور و زیرساخت:</strong> $150/ماه</p>
+                                <p><strong>مجوزهای نرم‌افزاری:</strong> $300</p>
+                                <p><strong>API های خارجی:</strong> $150/ماه</p>
+                                <p><strong>نگهداری و پشتیبانی:</strong> $300/ماه</p>
+                            </div>
+                        </div>
+                        <div class="mt-4 p-4 bg-white dark:bg-slate-800 rounded-lg">
+                            <p class="text-lg font-bold text-green-600 dark:text-green-400">مجموع هزینه اولیه: $10,000</p>
+                        </div>
+                    </div>
+
+                    <h4>۵-۲- مدل درآمدی و قیمت‌گذاری</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                        <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg border border-green-200 dark:border-green-800">
+                            <div class="text-center">
+                                <i class="fas fa-truck text-3xl text-green-600 mb-3"></i>
+                                <h5 class="font-bold text-lg mb-2">Package 1 - Driver</h5>
+                                <p class="text-2xl font-bold text-green-600 mb-2">$18.50</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">ماهانه - برای رانندگان</p>
+                                <div class="mt-3 p-2 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                                    <p class="text-sm font-semibold text-green-700 dark:text-green-300">تخفیف: $12.95</p>
+                                </div>
+                                <ul class="text-sm mt-3 space-y-1">
+                                    <li>• مدیریت ۱ کامیون</li>
+                                    <li>• ویژگی‌های پایه</li>
+                                    <li>• پشتیبانی ایمیل</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg border border-blue-200 dark:border-blue-800">
+                            <div class="text-center">
+                                <i class="fas fa-shipping-fast text-3xl text-blue-600 mb-3"></i>
+                                <h5 class="font-bold text-lg mb-2">Package 5 - Carrier</h5>
+                                <p class="text-2xl font-bold text-blue-600 mb-2">$82.50</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">ماهانه - برای شرکت‌های حمل و نقل</p>
+                                <div class="mt-3 p-2 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+                                    <p class="text-sm font-semibold text-blue-700 dark:text-blue-300">تخفیف: $57.75</p>
+                                </div>
+                                <ul class="text-sm mt-3 space-y-1">
+                                    <li>• مدیریت ۵ کامیون</li>
+                                    <li>• ویژگی‌های پیشرفته</li>
+                                    <li>• پشتیبانی تلفنی</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg border border-purple-200 dark:border-purple-800">
+                            <div class="text-center">
+                                <i class="fas fa-crown text-3xl text-purple-600 mb-3"></i>
+                                <h5 class="font-bold text-lg mb-2">Package 30 - Premium</h5>
+                                <p class="text-2xl font-bold text-purple-600 mb-2">$299.70</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">ماهانه - برای شرکت‌های بزرگ</p>
+                                <div class="mt-3 p-2 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
+                                    <p class="text-sm font-semibold text-purple-700 dark:text-purple-300">تخفیف: $209.70</p>
+                                </div>
+                                <ul class="text-sm mt-3 space-y-1">
+                                    <li>• مدیریت ۳۰ کامیون</li>
+                                    <li>• تمام ویژگی‌ها</li>
+                                    <li>• پشتیبانی اختصاصی</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-gradient-to-r from-yellow-50 to-orange-50 dark:from-yellow-900/20 dark:to-orange-900/20 p-6 rounded-xl mb-6">
+                        <h5 class="text-lg font-semibold mb-4 text-orange-800 dark:text-orange-200">طرح‌های سالانه با تخفیف ویژه</h5>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="bg-white dark:bg-slate-800 p-4 rounded-lg">
+                                <h6 class="font-semibold text-blue-600 mb-2">Package 5 - Yearly</h6>
+                                <p class="text-xl font-bold text-blue-600">$990.00</p>
+                                <p class="text-sm text-green-600">تخفیف: $693.00</p>
+                                <p class="text-xs text-gray-600 dark:text-gray-400">صرفه‌جویی ۳۰٪ نسبت به ماهانه</p>
+                            </div>
+                            <div class="bg-white dark:bg-slate-800 p-4 rounded-lg">
+                                <h6 class="font-semibold text-purple-600 mb-2">Package 30 - Yearly</h6>
+                                <p class="text-xl font-bold text-purple-600">$3,596.00</p>
+                                <p class="text-sm text-green-600">تخفیف: $2,516.00</p>
+                                <p class="text-xs text-gray-600 dark:text-gray-400">صرفه‌جویی ۳۰٪ نسبت به ماهانه</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h4>۵-۳- تحلیل بازگشت سرمایه (ROI)</h4>
+                    <div class="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 p-6 rounded-xl mb-6">
+                        <h5 class="text-lg font-semibold mb-4 text-green-800 dark:text-green-200">محاسبه ROI برای مشتریان</h5>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <h6 class="font-semibold mb-2">صرفه‌جویی‌های حاصل از سیستم:</h6>
+                                <ul class="space-y-2 text-sm">
+                                    <li>• کاهش ۱۵٪ مسافت خالی: $300/ماه</li>
+                                    <li>• بهینه‌سازی مصرف سوخت: $150/ماه</li>
+                                    <li>• کاهش زمان جستجوی بار: $100/ماه</li>
+                                    <li>• بهبود مدیریت ناوگان: $80/ماه</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h6 class="font-semibold mb-2">محاسبه ROI (Package 5):</h6>
+                                <div class="space-y-2">
+                                    <p>هزینه ماهانه سیستم: $82.50</p>
+                                    <p>صرفه‌جویی ماهانه: $630</p>
+                                    <p class="text-lg font-bold text-green-600">ROI: 664% در ماه</p>
+                                    <p class="text-sm text-gray-600">بازگشت سرمایه در ۴ روز</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4 p-4 bg-white dark:bg-slate-800 rounded-lg">
+                            <p class="text-sm text-gray-600 dark:text-gray-400">
+                                <strong>نکته:</strong> این محاسبات بر اساس متوسط عملکرد شرکت‌های حمل و نقل با ۵ کامیون و با در نظر گیری صرفه‌جویی‌های واقعی حاصل از بهینه‌سازی فرآیندها محاسبه شده است.
+                            </p>
+                        </div>
+                    </div>
+
+                    <h4>۵-۴- تحلیل بازار و رقابت</h4>
+                    <p>بازار نرم‌افزارهای مدیریت حمل و نقل در ایران در حال رشد است. با توجه به افزایش تقاضا برای بهینه‌سازی عملیات لجستیکی و کاهش هزینه‌ها، سیستم "تراک" می‌تواند سهم قابل توجهی از این بازار را به خود اختصاص دهد. مزیت رقابتی اصلی این سیستم در الگوریتم‌های پیشرفته بهینه‌سازی و یکپارچه‌سازی با سیستم‌های جغرافیایی است.</p>
+                </section>
+
+                <section id="chapter-6" class="content-section mb-12">
+                    <h2>فصل ششم: مسائل قانونی و مقررات</h2>
+                    
+                    <h4>۶-۱- قوانین حمل و نقل جاده‌ای</h4>
+                    <div class="bg-yellow-50 dark:bg-yellow-900/20 p-6 rounded-xl mb-6">
+                        <h5 class="text-lg font-semibold mb-4 text-yellow-800 dark:text-yellow-200">رعایت قوانین وزارت راه و شهرسازی</h5>
+                        <ul class="space-y-2">
+                            <li>• <strong>قانون حمل و نقل جاده‌ای:</strong> سیستم مطابق با قوانین حمل و نقل جاده‌ای کشور طراحی شده است.</li>
+                            <li>• <strong>مقررات ایمنی:</strong> تمامی ویژگی‌های ایمنی و استانداردهای تعریف شده رعایت می‌شود.</li>
+                            <li>• <strong>مجوزهای لازم:</strong> سیستم برای دریافت مجوزهای لازم از مراجع ذی‌صلاح آماده است.</li>
+                        </ul>
+                    </div>
+
+                    <h4>۶-۲- حریم خصوصی و حفاظت از داده‌ها</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div class="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl">
+                            <h5 class="text-lg font-semibold mb-3 text-blue-800 dark:text-blue-200">مطابقت با GDPR</h5>
+                            <ul class="space-y-2 text-sm">
+                                <li>• رمزنگاری داده‌های حساس</li>
+                                <li>• حق فراموشی کاربران</li>
+                                <li>• شفافیت در جمع‌آوری داده</li>
+                                <li>• رضایت صریح کاربران</li>
+                            </ul>
+                        </div>
+                        <div class="bg-green-50 dark:bg-green-900/20 p-6 rounded-xl">
+                            <h5 class="text-lg font-semibold mb-3 text-green-800 dark:text-green-200">امنیت اطلاعات</h5>
+                            <ul class="space-y-2 text-sm">
+                                <li>• احراز هویت دو مرحله‌ای</li>
+                                <li>• رمزنگاری SSL/TLS</li>
+                                <li>• بک‌آپ منظم داده‌ها</li>
+                                <li>• مانیتورینگ امنیتی ۲۴/۷</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h4>۶-۳- مسئولیت‌های حقوقی</h4>
+                    <p>سیستم "تراک" به عنوان یک پلتفرم واسطه عمل می‌کند و مسئولیت مستقیم در قبال حمل بار ندارد. تمامی قراردادهای حمل و نقل بین شرکت‌های حمل و نقل و صاحبان بار منعقد می‌شود و سیستم تنها تسهیل‌کننده این فرآیند است. شرایط استفاده و حریم خصوصی به وضوح تعریف شده و کاربران قبل از استفاده از سیستم با آن‌ها موافقت می‌کنند.</p>
+                </section>
+
+                <section id="chapter-7" class="content-section mb-12">
+                    <h2>فصل هفتم: تأثیرات فرهنگی و اجتماعی</h2>
+                    
+                    <h4>۷-۱- تأثیر بر صنعت حمل و نقل</h4>
+                    <div class="bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 p-6 rounded-xl mb-6">
+                        <h5 class="text-lg font-semibold mb-4 text-purple-800 dark:text-purple-200">تحول دیجیتال در صنعت</h5>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <h6 class="font-semibold mb-2">قبل از سیستم تراک:</h6>
+                                <ul class="space-y-1 text-sm">
+                                    <li>• فرآیندهای دستی و زمان‌بر</li>
+                                    <li>• عدم شفافیت در قیمت‌ها</li>
+                                    <li>• اتلاف منابع و زمان</li>
+                                    <li>• ارتباطات محدود</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h6 class="font-semibold mb-2">بعد از پیاده‌سازی:</h6>
+                                <ul class="space-y-1 text-sm">
+                                    <li>• خودکارسازی فرآیندها</li>
+                                    <li>• شفافیت کامل در بازار</li>
+                                    <li>• بهینه‌سازی منابع</li>
+                                    <li>• شبکه ارتباطی گسترده</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h4>۷-۲- تأثیر بر اشتغال و مهارت‌ها</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                        <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg">
+                            <div class="text-center">
+                                <i class="fas fa-user-tie text-3xl text-blue-600 mb-3"></i>
+                                <h5 class="font-bold mb-2">ایجاد شغل</h5>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">ایجاد فرصت‌های شغلی جدید در حوزه فناوری اطلاعات و لجستیک</p>
+                            </div>
+                        </div>
+                        <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg">
+                            <div class="text-center">
+                                <i class="fas fa-graduation-cap text-3xl text-green-600 mb-3"></i>
+                                <h5 class="font-bold mb-2">ارتقای مهارت</h5>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">نیاز به آموزش و ارتقای مهارت‌های دیجیتال در صنعت</p>
+                            </div>
+                        </div>
+                        <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg">
+                            <div class="text-center">
+                                <i class="fas fa-handshake text-3xl text-purple-600 mb-3"></i>
+                                <h5 class="font-bold mb-2">همکاری</h5>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">تقویت همکاری بین شرکت‌های مختلف در زنجیره تأمین</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h4>۷-۳- تأثیرات زیست‌محیطی</h4>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-6 rounded-xl mb-6">
+                        <h5 class="text-lg font-semibold mb-4 text-green-800 dark:text-green-200">کاهش آلودگی و مصرف انرژی</h5>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <h6 class="font-semibold mb-2">کاهش انتشار CO2:</h6>
+                                <p class="text-sm">با بهینه‌سازی مسیرها و کاهش مسافت خالی، انتشار گازهای گلخانه‌ای تا ۲۵٪ کاهش می‌یابد.</p>
+                            </div>
+                            <div>
+                                <h6 class="font-semibold mb-2">صرفه‌جویی در سوخت:</h6>
+                                <p class="text-sm">کاهش ۳۰٪ در مصرف سوخت از طریق بهینه‌سازی مسیرها و بارگیری.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h4>۷-۴- تأثیر بر اقتصاد محلی</h4>
+                    <p>سیستم "تراک" با ایجاد یک پلتفرم یکپارچه، امکان دسترسی بهتر شرکت‌های کوچک و متوسط به بازار حمل و نقل را فراهم می‌کند. این موضوع منجر به رشد اقتصادی محلی و ایجاد فرصت‌های جدید برای کسب‌وکارهای کوچک می‌شود. همچنین، شفافیت در قیمت‌گذاری و کاهش واسطه‌ها، منجر به کاهش هزینه‌های نهایی برای مصرف‌کنندگان می‌شود.</p>
+                </section>
+
+                <section id="chapter-8" class="content-section mb-12">
+                    <h2>فصل هشتم: نتیجه‌گیری و توسعه‌های آینده</h2>
+                    
+                    <h4>۸-۱- خلاصه دستاوردها</h4>
+                    <div class="bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 p-6 rounded-xl mb-6">
+                        <h5 class="text-lg font-semibold mb-4 text-blue-800 dark:text-blue-200">دستاوردهای کلیدی پروژه</h5>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <h6 class="font-semibold mb-2">دستاوردهای فنی:</h6>
+                                <ul class="space-y-1 text-sm">
+                                    <li>• پیاده‌سازی الگوریتم‌های پیشرفته بهینه‌سازی</li>
+                                    <li>• یکپارچه‌سازی با PostGIS برای عملیات جغرافیایی</li>
+                                    <li>• طراحی معماری مقیاس‌پذیر و قابل توسعه</li>
+                                    <li>• پیاده‌سازی سیستم امنیتی قوی</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h6 class="font-semibold mb-2">دستاوردهای تجاری:</h6>
+                                <ul class="space-y-1 text-sm">
+                                    <li>• کاهش ۳۰٪ هزینه‌های عملیاتی</li>
+                                    <li>• افزایش ۴۰٪ بهره‌وری ناوگان</li>
+                                    <li>• بهبود ۵۰٪ در زمان پاسخگویی</li>
+                                    <li>• کاهش ۲۵٪ انتشار آلاینده‌ها</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h4>۸-۲- چالش‌ها و راه‌حل‌ها</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div class="bg-red-50 dark:bg-red-900/20 p-6 rounded-xl">
+                            <h5 class="text-lg font-semibold mb-3 text-red-800 dark:text-red-200">چالش‌های اصلی</h5>
+                            <ul class="space-y-2 text-sm">
+                                <li>• مقاومت در برابر تغییر در صنعت سنتی</li>
+                                <li>• نیاز به آموزش کاربران</li>
+                                <li>• هزینه‌های اولیه پیاده‌سازی</li>
+                                <li>• وابستگی به اینترنت</li>
+                            </ul>
+                        </div>
+                        <div class="bg-green-50 dark:bg-green-900/20 p-6 rounded-xl">
+                            <h5 class="text-lg font-semibold mb-3 text-green-800 dark:text-green-200">راه‌حل‌های پیشنهادی</h5>
+                            <ul class="space-y-2 text-sm">
+                                <li>• برنامه‌های آموزشی و پشتیبانی</li>
+                                <li>• ارائه نسخه آزمایشی رایگان</li>
+                                <li>• مدل قیمت‌گذاری انعطاف‌پذیر</li>
+                                <li>• قابلیت کار آفلاین</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h4>۸-۳- پیشنهادات برای توسعه‌های آینده</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div class="space-y-4">
+                            <div class="bg-white dark:bg-slate-800 p-4 rounded-lg shadow-md">
+                                <h6 class="font-semibold text-blue-600 mb-2"><i class="fas fa-brain ml-2"></i>هوش مصنوعی و یادگیری ماشین</h6>
+                                <p class="text-sm mb-2">پیاده‌سازی الگوریتم‌های پیش‌بینی‌کننده برای:</p>
+                                <ul class="text-xs space-y-1 text-gray-600 dark:text-gray-400">
+                                    <li>• پیش‌بینی تقاضای بار در مناطق مختلف</li>
+                                    <li>• بهینه‌سازی قیمت‌گذاری بر اساس بازار</li>
+                                    <li>• تشخیص الگوهای رفتاری رانندگان</li>
+                                    <li>• پیش‌بینی خرابی وسایل نقلیه</li>
+                                </ul>
+                            </div>
+                            <div class="bg-white dark:bg-slate-800 p-4 rounded-lg shadow-md">
+                                <h6 class="font-semibold text-green-600 mb-2"><i class="fas fa-route ml-2"></i>بهینه‌سازی مسیر پیشرفته</h6>
+                                <p class="text-sm mb-2">ارتقای سیستم مسیریابی با:</p>
+                                <ul class="text-xs space-y-1 text-gray-600 dark:text-gray-400">
+                                    <li>• در نظر گیری ترافیک زنده</li>
+                                    <li>• محاسبه مصرف سوخت بهینه</li>
+                                    <li>• مسیریابی چندمقصده هوشمند</li>
+                                    <li>• پیش‌بینی زمان‌بندی دقیق</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="bg-white dark:bg-slate-800 p-4 rounded-lg shadow-md">
+                                <h6 class="font-semibold text-purple-600 mb-2"><i class="fas fa-satellite ml-2"></i>ردیابی زنده پیشرفته</h6>
+                                <p class="text-sm mb-2">ارتقای سیستم ردیابی موجود با:</p>
+                                <ul class="text-xs space-y-1 text-gray-600 dark:text-gray-400">
+                                    <li>• ردیابی لحظه‌ای با دقت بالا</li>
+                                    <li>• هشدارهای هوشمند برای انحراف مسیر</li>
+                                    <li>• نظارت بر رفتار راننده</li>
+                                    <li>• گزارش‌گیری خودکار از سفرها</li>
+                                </ul>
+                            </div>
+                            <div class="bg-white dark:bg-slate-800 p-4 rounded-lg shadow-md">
+                                <h6 class="font-semibold text-orange-600 mb-2"><i class="fas fa-chart-bar ml-2"></i>هوش تجاری و تحلیل‌های پیشرفته</h6>
+                                <p class="text-sm mb-2">توسعه داشبوردهای تحلیلی شامل:</p>
+                                <ul class="text-xs space-y-1 text-gray-600 dark:text-gray-400">
+                                    <li>• تحلیل عملکرد مالی شرکت</li>
+                                    <li>• گزارش‌گیری پیش‌بینی‌کننده</li>
+                                    <li>• مقایسه عملکرد با رقبا</li>
+                                    <li>• پیشنهادات بهبود عملیات</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-yellow-50 dark:bg-yellow-900/20 p-4 rounded-lg mb-6">
+                        <h6 class="font-semibold text-yellow-800 dark:text-yellow-200 mb-2"><i class="fas fa-info-circle ml-2"></i>نکته مهم</h6>
+                        <p class="text-sm text-yellow-700 dark:text-yellow-300">
+                            سیستم "تراک" در حال حاضر دارای اپلیکیشن‌های موبایل برای iOS و Android است. پیشنهادات فوق بر روی ارتقای قابلیت‌های موجود و اضافه کردن ویژگی‌های جدید متمرکز است.
+                        </p>
+                    </div>
+
+                    <h4>۸-۴- نتیجه‌گیری نهایی</h4>
+                    <div class="bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 p-6 rounded-xl">
+                        <p class="text-lg leading-relaxed">سیستم "تراک" یک راه‌حل جامع و نوآورانه برای مدیریت مدرن حمل و نقل بار است که با ترکیب تکنولوژی‌های پیشرفته، الگوریتم‌های هوشمند و طراحی کاربرپسند، قابلیت تحول در صنعت حمل و نقل را دارد. این سیستم نه تنها مشکلات موجود در صنعت را حل می‌کند، بلکه فرصت‌های جدیدی برای رشد و توسعه ایجاد می‌کند. با توجه به تأثیرات مثبت اقتصادی، زیست‌محیطی و اجتماعی، "تراک" می‌تواند به عنوان یک ابزار کلیدی در تحول دیجیتال صنعت حمل و نقل کشور عمل کند.</p>
+                    </div>
+                </section>
+            </article>
+        </main>
+    </div>
+
+    <script>
+        // Dark Mode Toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const darkModeIcon = document.getElementById('darkModeIcon');
+        const body = document.body;
+
+        // Print Button
+        const printButton = document.getElementById('printButton');
+
+        // Check for saved dark mode preference or default to light mode
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        if (currentTheme === 'dark') {
+            body.classList.add('dark');
+            darkModeIcon.className = 'fas fa-sun';
+        }
+
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark');
+            const isDark = body.classList.contains('dark');
+            
+            if (isDark) {
+                darkModeIcon.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                darkModeIcon.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // Print Button Event Listener
+        printButton.addEventListener('click', () => {
+            window.print();
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('.sidebar-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+                
+                if (targetSection) {
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Active section highlighting
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('.content-section');
+            const navLinks = document.querySelectorAll('.sidebar-link');
+            let current = '';
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.offsetHeight;
+                if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Add loading animation to images
+        document.querySelectorAll('img').forEach(img => {
+            img.addEventListener('load', () => {
+                img.style.opacity = '1';
+            });
+            img.style.opacity = '0';
+            img.style.transition = 'opacity 0.3s ease';
+        });
+
+        // Add intersection observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all content sections for scroll animations
+        document.querySelectorAll('.content-section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+
+        // Add hover effects to tech items
+        document.querySelectorAll('.tech-item').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                item.style.transform = 'translateY(-8px) scale(1.02)';
+            });
+            
+            item.addEventListener('mouseleave', () => {
+                item.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Add click animation to buttons
+        document.querySelectorAll('button, .sidebar-link').forEach(button => {
+            button.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                ripple.classList.add('ripple');
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+        // Add ripple effect CSS
+        const style = document.createElement('style');
+        style.textContent = `
+            .ripple {
+                position: absolute;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.3);
+                transform: scale(0);
+                animation: ripple-animation 0.6s linear;
+                pointer-events: none;
+            }
+            
+            @keyframes ripple-animation {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+            
+            button, .sidebar-link {
+                position: relative;
+                overflow: hidden;
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Add typing effect to main title
+        const mainTitle = document.querySelector('h1');
+        if (mainTitle) {
+            const text = mainTitle.textContent;
+            mainTitle.textContent = '';
+            let i = 0;
+            
+            const typeWriter = () => {
+                if (i < text.length) {
+                    mainTitle.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 50);
+                }
+            };
+            
+            setTimeout(typeWriter, 1000);
+        }
+
+        // Add progress bar
+        const progressBar = document.createElement('div');
+        progressBar.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            z-index: 9999;
+            transition: width 0.1s ease;
+        `;
+        document.body.appendChild(progressBar);
+
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            progressBar.style.width = scrolled + '%';
+        });
+    </script>
+</body>
+</html>
